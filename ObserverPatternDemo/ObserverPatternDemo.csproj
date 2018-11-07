@@ -47,8 +47,11 @@
     <Compile Include="Observer Interface\IObservable.cs" />
     <Compile Include="Observer Interface\IObserver.cs" />
     <Compile Include="Implemantation\Observable\WeatherData.cs" />
+    <Compile Include="Observer Interface\Observer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Implemantation\Observable\WeatherInfo.cs" />
+    <Compile Include="Utils\Checker.cs" />
+    <Compile Include="Utils\View.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

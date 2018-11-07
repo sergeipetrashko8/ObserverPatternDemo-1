@@ -1,30 +1,35 @@
 ﻿using ObserverPatternDemo.Implemantation.Observable;
+using ObserverPatternDemo.Utils;
 
 namespace ObserverPatternDemo.Observer_Interface
 {
-    /// <summary>
-    /// Defines a receiver of notifications.
-    /// </summary>
-    /// <typeparam name="T">The object that provides notification information.</typeparam>
-    public interface IObserver<T> where T : EventInfo
+    public abstract class Observer<T> : IObserver<T> where T : WeatherInfo
     {
         /// <summary>
         /// Handles an event.
         /// </summary>
         ///<param name="sender">The object that is to raised notifications.</param>
         ///<param name="info">The current notification information.</param>
-        void Update(object sender, T info);
+        public abstract void Update(object sender, T info);
 
         /// <summary>
         ///     Subscribes this object to <see cref="IObservable{WeatherEventArgs}" /> object
         /// </summary>
         /// <param name="observable"><see cref="IObservable{T}"/> object</param>
-        void Subscribe(IObservable<T> observable);
+        public void Subscribe(IObservable<T> observable)
+        {
+            Checker.CheckNullReference(observable, nameof(observable));
+            observable.Register(this);
+        }
 
         /// <summary>
         ///     Unsubscribes this object from <see cref="IObservable{WeatherEventArgs}" /> object
         /// </summary>
         /// <param name="observable"><see cref="IObservable{T}"/> object</param>
-        void Unsubscribe(IObservable<T> observable);
+        public void Unsubscribe(IObservable<T> observable)
+        {
+            Checker.CheckNullReference(observable, nameof(observable));
+            observable.Unregister(this);
+        }
     }
 }
